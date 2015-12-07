@@ -1,0 +1,6 @@
+
+
+#ignore .class files
+BookMark/WebRoot/WEB-INF/classes/
+
+
