@@ -36,7 +36,7 @@ public class XmlDaoUtils {
 	
 	public static void refXml(){
 		try {
-			XMLWriter writer = new XMLWriter(new FileOutputStream(path),OutputFormat.createCompactFormat());
+			XMLWriter writer = new XMLWriter(new FileOutputStream(path),OutputFormat.createPrettyPrint());
 			writer.write(dom);
 			writer.close();
 		} catch (Exception e) {
