@@ -1,8 +1,6 @@
 package com.homework.util;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.UnsupportedEncodingException;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
