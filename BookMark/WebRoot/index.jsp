@@ -1,26 +1,49 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
+<%@ taglib uri="http://java.sun.com/jsf/core" prefix="c"%>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-  <head>
-    <base href="<%=basePath%>">
-    
-    <title>My JSP 'index.jsp' starting page</title>
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-  </head>
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Author" content="donglei">
+  <meta name="Keywords" content="bookmark">
+  <meta name="Description" content="JS Bookmark Management">
+  <title>BookMarks Manage</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script type="text/javascript" src="js/libs/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+</head>
+ <body>
+	<div id="page">
+		<h1>BookMark Manage</h1>
+		<div class="search">
+			<input id="keyword" type="text" maxlength="20" placeholder="Key Words..."/>
+			<span id="resultcount"></span>
+ 		</div>
+		<div id="bookmarks">
+			<ul id="list">
+			</ul>
+		</div>
+		
+		<div id="add_div">
+		  <form id="form1" action="${pageContext.request.contextPath}/servlet/addBookMark">
+		  <table>
+		  	<tr>
+		  	  <td>书签名称</td>
+		  	  <td><input type="text" id="title" name="title"/></td>
+		  	</tr>
+		  	<tr>
+		  	  <td>书签地址</td>
+		  	  <td><input type="text" id="url" name="url"/></td>
+		  	</tr>
+		  	<tr>
+		  	  <td colspan="2"><span id="errorMsg"></span></td>
+		  	</tr>
+		  	<tr><td colspan="2"><input type="button" id="btn_add" value="添加" onclick="javascript:addBookMark();"></td></tr>
+		  </table>
+		  </form>
+		</div>
+	</div>
   
-  <body>
-    This is my JSP page. <br>
-  </body>
+ </body>
 </html>
