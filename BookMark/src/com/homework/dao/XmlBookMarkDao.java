@@ -27,7 +27,7 @@ public class XmlBookMarkDao implements BookMarkDao{
 			Element ele = list.get(0);
 			bookmark.setTitle(ele.attributeValue("title"));
 			bookmark.setUrl(ele.attributeValue("url"));
-			bookmark.setDate(new Date(ele.attributeValue("created")));
+			//bookmark.setDate(new Date(ele.attributeValue("created")));
 			return bookmark;
 		} else {
 			return null;

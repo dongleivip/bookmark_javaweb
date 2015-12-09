@@ -1,10 +1,14 @@
 package com.homework.domain;
 
+import java.util.Date;
+
+import com.homework.exception.MsgException;
+
 public class BookMark {
 
 	private String title;
 	private String url;
-	private String date;
+	private Date date;
 
 	public String getTitle() {
 		return title;
@@ -22,12 +26,18 @@ public class BookMark {
 		this.url = url;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
+	}
+	
+	public void checkValue() throws MsgException{
+		if(title == null || "".equals(title)){
+			throw new MsgException("书签名称不能为空");
+		}
 	}
 
 	@Override
