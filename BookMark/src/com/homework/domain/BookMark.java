@@ -6,9 +6,18 @@ import com.homework.exception.MsgException;
 
 public class BookMark {
 
+	private Integer id;
 	private String title;
 	private String url;
 	private Date date;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getTitle() {
 		return title;
@@ -33,9 +42,9 @@ public class BookMark {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
-	public void checkValue() throws MsgException{
-		if(title == null || "".equals(title)){
+
+	public void checkValue() throws MsgException {
+		if (title == null || "".equals(title)) {
 			throw new MsgException("书签名称不能为空");
 		}
 	}
