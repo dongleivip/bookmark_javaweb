@@ -13,7 +13,7 @@ public class MySqlBookMarkDaoTest {
 	@Test
 	public void testFindBookMarkByTitle(){
 		BookMarkDao dao = BasicFactory.getFactory().getInstance(BookMarkDao.class);
-		BookMark bookmark = dao.findbyTitle("Google");
+		BookMark bookmark = dao.querybyTitle("Google");
 		System.out.println(bookmark.toString());
 	}
 

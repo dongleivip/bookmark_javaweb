@@ -12,7 +12,7 @@ public class XmlBookMarkDaoTest {
 	@Test
 	public void testFindBookMarkByTitle(){
 		XmlBookMarkDao dao = new XmlBookMarkDao();
-		BookMark bookmark = dao.findbyTitle("标题");
+		BookMark bookmark = dao.querybyTitle("标题");
 		System.out.println(bookmark.toString());
 	}
 

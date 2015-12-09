@@ -13,22 +13,28 @@ public class BookMarkServiceImpl implements BookMarkService {
 
 	public void add(BookMark bookmark) throws MsgException {
 
-		if (dao.findbyTitle(bookmark.getTitle()) != null) {
+		if (dao.querybyTitle(bookmark.getTitle()) != null) {
 			throw new MsgException("该书签标题已存在");
 		}
 		dao.addBookMark(bookmark);
 	}
 
-	public void delete(BookMark bookmark) {
+	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
+
 	}
 
-	public BookMark queryById(Integer Id) {
+	public BookMark queryById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<BookMark> queryByList() {
+	public BookMark queryByTitle(String title) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<BookMark> queryAllByList() {
 		// TODO Auto-generated method stub
 		return null;
 	}

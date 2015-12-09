@@ -21,26 +21,49 @@ public class MySqlBookMarkDaoImpl implements BookMarkDao {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
-
 	}
 
-	public BookMark findbyTitle(String title) {
+	public BookMark querybyTitle(String title) {
 		String sql = "select * from tb_bookmark where title = ?";
+		try {
+			QueryRunner runner = new QueryRunner(DaoUtils.getSource());
+			return runner.query(sql, new BeanHandler<BookMark>(BookMark.class),
+					title);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+
+	public BookMark queryById(Integer Id) {
+		String sql = "select * from tb_bookmark where id = ?";
+		try {
+			QueryRunner runner = new QueryRunner(DaoUtils.getSource());
+			return runner.query(sql, new BeanHandler<BookMark>(BookMark.class),Id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+
+	public void deleteById(Integer id) {
+		String sql = "delete from tb_bookmark where id = ?";
 		try{
 			QueryRunner runner = new QueryRunner(DaoUtils.getSource());
-			return runner.query(sql, new BeanHandler<BookMark>(BookMark.class),title);
+			runner.update(sql,id);
 		}catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException();
 		}
 	}
 
-	public List<BookMark> getAllBookMark() {
+	public List<BookMark> queryAllByList() {
 		String sql = "select * from tb_bookmark";
-		try{
+		try {
 			QueryRunner runner = new QueryRunner(DaoUtils.getSource());
 			return runner.query(sql, new BeanListHandler<BookMark>(BookMark.class));
-		}catch (Exception e) {
+					
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException();
 		}
