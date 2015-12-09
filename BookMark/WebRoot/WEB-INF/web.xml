@@ -9,11 +9,23 @@
     <servlet-name>AddBookMarkServlet</servlet-name>
     <servlet-class>com.homework.web.AddBookMarkServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>QureyBookMarkServlet</servlet-name>
+    <servlet-class>com.homework.web.QureyBookMarkServlet</servlet-class>
+  </servlet>
+
+
+
 
   <servlet-mapping>
     <servlet-name>AddBookMarkServlet</servlet-name>
     <url-pattern>/servlet/addBookMark</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QureyBookMarkServlet</servlet-name>
+    <url-pattern>/servlet/QureyBookMarkServlet</url-pattern>
+  </servlet-mapping>
+
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
