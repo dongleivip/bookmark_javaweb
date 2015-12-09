@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/2002/xmlspec/dtd/2.10/xmlspec.dtd">
+
+<c3p0-config>
+  <default-config>
+    <property name="driverClass">com.mysql.jdbc.Driver</property>
+    <property name="jdbcUrl">jdbc:mysql://10.50.28.110:3306/homework?useUnicode=true&amp;characterEncoding=utf-8</property>
+    <property name="user">root</property>
+    <property name="password">admin@123456</property>
+  </default-config>
+</c3p0-config>
+	
