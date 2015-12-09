@@ -11,6 +11,30 @@ $(document).ready(function() {
 	
 });
 
+
+function quertBookMarks(){
+	
+	$.ajax({  
+        type:"POST",
+        url: ctx + "/servlet/QureyBookMarkServlet", 
+        dataType: "json", 
+        success: function(jsonArray){
+        	
+        	alert(jsonArray);
+        	
+        	var data = JSON.parse(jsonArray); 
+        	
+        	alert(data);
+        	
+        	createList(data);
+        	
+        },
+        error : function(){
+        	alert("Request Failed...");
+        }
+	});
+}
+
 function addBookMark(){
 
 	$.ajax({  

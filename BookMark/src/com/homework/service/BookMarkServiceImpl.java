@@ -20,23 +20,19 @@ public class BookMarkServiceImpl implements BookMarkService {
 	}
 
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
-
+		dao.deleteById(id);
 	}
 
 	public BookMark queryById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.queryById(id);
 	}
 
 	public BookMark queryByTitle(String title) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.querybyTitle(title);
 	}
 
 	public List<BookMark> queryAllByList() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.queryAllByList();
 	}
 
 }
