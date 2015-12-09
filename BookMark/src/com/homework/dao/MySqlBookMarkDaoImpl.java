@@ -16,7 +16,7 @@ public class MySqlBookMarkDaoImpl implements BookMarkDao {
 		try {
 			QueryRunner runner = new QueryRunner(DaoUtils.getSource());
 			runner.update(sql, bookmark.getTitle(), bookmark.getUrl(),
-					bookmark.getDate());
+					bookmark.getCreated());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);

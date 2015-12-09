@@ -24,7 +24,7 @@ public class MySqlBookMarkDaoTest {
 		BookMark bookmark = new BookMark();
 		bookmark.setTitle("Google");
 		bookmark.setUrl("www.google.com");
-		bookmark.setDate(new Date());
+		bookmark.setCreated(new Date());
 		dao.addBookMark(bookmark);
 	}
 }

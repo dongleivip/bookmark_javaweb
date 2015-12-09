@@ -9,7 +9,7 @@ public class BookMark {
 	private Integer id;
 	private String title;
 	private String url;
-	private Date date;
+	private Date created;
 
 	public Integer getId() {
 		return id;
@@ -35,12 +35,12 @@ public class BookMark {
 		this.url = url;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getCreated() {
+		return created;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 	public void checkValue() throws MsgException {

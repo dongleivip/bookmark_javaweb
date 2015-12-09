@@ -45,7 +45,7 @@ public class XmlBookMarkDao implements BookMarkDao {
 		bookmarkEle.setAttributeValue("url", bookmark.getUrl());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		bookmarkEle
-				.setAttributeValue("created", sdf.format(bookmark.getDate()));
+				.setAttributeValue("created", sdf.format(bookmark.getCreated()));
 
 		// 挂载到<bookmarks>元素上
 		root.add(bookmarkEle);
@@ -68,7 +68,7 @@ public class XmlBookMarkDao implements BookMarkDao {
 			Element ele = list.get(0);
 			bookmark.setTitle(ele.attributeValue("title"));
 			bookmark.setUrl(ele.attributeValue("url"));
-			bookmark.setDate(new Date(ele.attributeValue("created")));
+			bookmark.setCreated(new Date(ele.attributeValue("created")));
 			return bookmark;
 		} else {
 			return null;
