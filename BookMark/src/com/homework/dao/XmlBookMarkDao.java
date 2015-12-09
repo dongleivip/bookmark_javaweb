@@ -1,5 +1,7 @@
 package com.homework.dao;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.dom4j.Document;
@@ -9,7 +11,9 @@ import org.dom4j.Element;
 import com.homework.domain.BookMark;
 import com.homework.util.XmlDaoUtils;
 
-public class XmlBookMarkDao {
+
+@SuppressWarnings(value={"unchecked", "deprecation"})
+public class XmlBookMarkDao implements BookMarkDao{
 
 	public BookMark findbyTitle(String title) {
 		Document dom = XmlDaoUtils.getDom();
@@ -19,12 +23,11 @@ public class XmlBookMarkDao {
 		List<Element> list = root.selectNodes("//bookmark[@title='" + title + "']");
 
 		if (list.size() > 0) {
-
 			BookMark bookmark = new BookMark();
 			Element ele = list.get(0);
 			bookmark.setTitle(ele.attributeValue("title"));
 			bookmark.setUrl(ele.attributeValue("url"));
-			bookmark.setDate(ele.attributeValue("created"));
+			bookmark.setDate(new Date(ele.attributeValue("created")));
 			return bookmark;
 		} else {
 			return null;
@@ -38,7 +41,8 @@ public class XmlBookMarkDao {
 		Element bookmarkEle = DocumentHelper.createElement("bookmark");
 		bookmarkEle.setAttributeValue("title",bookmark.getTitle());
 		bookmarkEle.setAttributeValue("url",bookmark.getUrl());
-		bookmarkEle.setAttributeValue("created",bookmark.getDate());
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		bookmarkEle.setAttributeValue("created",sdf.format(bookmark.getDate()));
 		
 		//挂载到<bookmarks>元素上
 		root.add(bookmarkEle);
@@ -60,10 +64,15 @@ public class XmlBookMarkDao {
 			Element ele = list.get(0);
 			bookmark.setTitle(ele.attributeValue("title"));
 			bookmark.setUrl(ele.attributeValue("url"));
-			bookmark.setDate(ele.attributeValue("created"));
+			bookmark.setDate(new Date(ele.attributeValue("created")));
 			return bookmark;
 		} else {
 			return null;
 		}
+	}
+
+	public List<BookMark> getAllBookMark() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
