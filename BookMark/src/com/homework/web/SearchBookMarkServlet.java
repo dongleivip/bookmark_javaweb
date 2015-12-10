@@ -42,9 +42,7 @@ public class SearchBookMarkServlet extends HttpServlet {
 		JSONArray jsonArray = JSONArray.fromObject(list,jsonConfig);
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println(jsonArray.toString());
-		out.flush();
-		out.close();
+		out.write(jsonArray.toString());
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

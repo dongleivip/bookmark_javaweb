@@ -4,13 +4,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
-import net.sf.json.processors.JsDateJsonBeanProcessor;
+
 import com.homework.domain.BookMark;
 import com.homework.factory.BasicFactory;
 import com.homework.service.BookMarkService;
@@ -44,9 +46,7 @@ public class QureyBookMarkServlet extends HttpServlet {
 		// response.setContentType("application/x-json");
 		PrintWriter out = response.getWriter();
 		// 输出JSONObject字符串到前台
-		out.println(jsonArray.toString());
-		out.flush();
-		out.close();
+		out.write(jsonArray.toString());
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
