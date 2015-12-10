@@ -1,33 +1,25 @@
 $(document).ready(function() { 
 	
-//	$("#keyword").bind("input propertychange", function(){
-//		filterKeyword($(this).val());
-//	});
+	$("#keyword").on("input propertychange", function(){
+		filterKeyword($(this).val());
+	});
 	
 	//$("btn_add").on("click",addBookMark);
-	
-	
 	
 	
 });
 
 
-function quertBookMarks(){
+function queryBookMarks(){
 	
 	$.ajax({  
         type:"POST",
         url: ctx + "/servlet/QureyBookMarkServlet", 
         dataType: "json", 
         success: function(jsonArray){
-        	
-        	alert(jsonArray);
-        	
-        	var data = JSON.parse(jsonArray); 
-        	
-        	alert(data);
-        	
+        	var str_json = JSON.stringify(jsonArray);
+        	var data = JSON.parse(str_json); 
         	createList(data);
-        	
         },
         error : function(){
         	alert("Request Failed...");

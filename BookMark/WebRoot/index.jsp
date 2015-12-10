@@ -11,8 +11,7 @@
   <meta name="Description" content="JS Bookmark Management">
   <title>BookMarks Manage</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  <script type="text/javascript" src="js/libs/jquery-1.9.1.min.js"></script>
-  <script type="text/javascript" src="js/libs/json2.js"></script>
+  <script type="text/javascript" src="js/libs/jquery-1.9.0.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
   <script type="text/javascript">var ctx = "${ctx}";</script>
 </head>
@@ -48,7 +47,7 @@
 		</div>
 		
 		<div>
-			<input type="button" id="btn_query" value="查询" onclick="quertBookMarks();" />
+			<input type="button" id="btn_query" value="查询" onclick="queryBookMarks();" />
 		</div>
 	</div>
   
