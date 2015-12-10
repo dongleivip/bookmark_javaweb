@@ -46,4 +46,10 @@ public interface BookMarkDao {
 	 */
 	List<BookMark> queryAllByList();
 
+	/**
+	 * 查询与关键字(title)相符的书签集合
+	 * @param keyword
+	 */
+	public List<BookMark> querybyKeyword(String keyword);
+
 }

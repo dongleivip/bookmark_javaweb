@@ -33,7 +33,7 @@ public class SearchBookMarkServlet extends HttpServlet {
 		
 		JsonConfig jsonConfig = new JsonConfig();
 		
-		// 解决两种Date类型转换问题
+		// 解决Date类型转换问题
 		//jsonConfig.registerJsonBeanProcessor(java.sql.Date.class,new JsDateJsonBeanProcessor());
 		
 		// 指定Date转换格式

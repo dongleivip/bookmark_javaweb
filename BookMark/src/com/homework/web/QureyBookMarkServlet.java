@@ -2,6 +2,7 @@ package com.homework.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +14,7 @@ import net.sf.json.processors.JsDateJsonBeanProcessor;
 import com.homework.domain.BookMark;
 import com.homework.factory.BasicFactory;
 import com.homework.service.BookMarkService;
+import com.homework.util.json.JsonDateValueProcessor;
 
 public class QureyBookMarkServlet extends HttpServlet {
 
@@ -30,8 +32,8 @@ public class QureyBookMarkServlet extends HttpServlet {
 		//设置默认忽略
 		// jsonConfig.setIgnoreDefaultExcludes(false);
 		
-		// 解决两种Date类型转换问题
-		jsonConfig.registerJsonBeanProcessor(java.sql.Date.class,new JsDateJsonBeanProcessor());
+		// 解决Date类型转换问题
+		jsonConfig.registerJsonValueProcessor(Date.class, new JsonDateValueProcessor());
 
 		JSONArray jsonArray = JSONArray.fromObject(list,jsonConfig);
 		//System.out.println(jsonArray.toString());

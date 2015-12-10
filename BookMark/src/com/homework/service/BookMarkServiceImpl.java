@@ -35,4 +35,13 @@ public class BookMarkServiceImpl implements BookMarkService {
 		return dao.queryAllByList();
 	}
 
+	public List<BookMark> queryListByTitle(String title) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<BookMark> queryByKeyword(String keyword) {
+		return dao.querybyKeyword(keyword);
+	}
+
 }

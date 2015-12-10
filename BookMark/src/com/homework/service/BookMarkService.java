@@ -44,4 +44,17 @@ public interface BookMarkService {
 	 * @return 返回所有书签的集合
 	 */
 	public List<BookMark> queryAllByList();
+	
+	/**
+	 * 根据书签名称查询
+	 * @return 返回名称与title相符的书签集合
+	 */
+	public List<BookMark> queryListByTitle(String title);
+
+	/**
+	 * 查询与关键字(title)相符的书签
+	 * @param keyword
+	 * @return
+	 */
+	public List<BookMark> queryByKeyword(String keyword);
 }

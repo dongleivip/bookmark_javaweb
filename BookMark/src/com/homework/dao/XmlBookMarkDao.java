@@ -90,4 +90,10 @@ public class XmlBookMarkDao implements BookMarkDao {
 		throw new NotImplementedException();
 	}
 
+	public List<BookMark> querybyKeyword(String keyword) {
+		// TODO Auto-generated method stub
+		throw new NotImplementedException();
+	}
+	
+
 }
