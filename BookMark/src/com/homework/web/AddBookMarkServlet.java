@@ -1,11 +1,14 @@
 package com.homework.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONObject;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -22,21 +25,31 @@ public class AddBookMarkServlet extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			BookMarkService service = BasicFactory.getFactory().getInstance(BookMarkService.class); 
-
-			// 封装数据
+			
+			request.setCharacterEncoding("utf-8");
+			
+			// 1.封装数据
 			BookMark bookmark = new BookMark();
 			BeanUtils.populate(bookmark, request.getParameterMap());
+			// 校验数据
 			bookmark.checkValue();
 
-			// 调用Service中的添加方法
+			// 2.调用Service中的添加方法
 			service.add(bookmark);
 			
-			// 提示添加成功
-			response.getWriter().write("添加成功");
-			response.setHeader("refresh", "3;url=" + request.getContextPath() + "/index.jsp");
+			// 3.添加成功
+			JSONObject jsonObj = new JSONObject();
+			jsonObj.put("flag", "ok");
+			response.setCharacterEncoding("UTF-8");
+			PrintWriter out = response.getWriter();
+			out.write(jsonObj.toString());
+			
 		} catch (MsgException e) {
-			request.setAttribute("msg", e.getMessage());
-			request.getRequestDispatcher("/index.jsp");
+			JSONObject jsonObj = new JSONObject();
+			jsonObj.put("flag", "fail");
+			jsonObj.put("msg",e.getMessage());
+			PrintWriter out = response.getWriter();
+			out.write(jsonObj.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 			// 简单处理一下先
