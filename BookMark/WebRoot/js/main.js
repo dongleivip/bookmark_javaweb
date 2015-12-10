@@ -44,18 +44,19 @@ function addBookMark(){
 }
 
 
-
-
 function filterKeyword(key){
 
-	//alert(key);
 	var reg = new RegExp(key,'gi');
 	
 	$.ajax({  
         type:"GET",  
-        url:"data/bookmarks.json",  
-        dataType: "json",  
-        success: function(data){
+        url: ctx + "/servlet/SearchBookMarkServlet",  
+        data :  "keyword=" + key,
+        dataType: "json", 
+        success: function(jsonArray){
+        	
+        	var str_json = JSON.stringify(jsonArray);
+        	var data = JSON.parse(str_json); 
         	
         	if(key == ""){
         		createList(data);
@@ -71,7 +72,7 @@ function filterKeyword(key){
         	}
         },
         error : function(){
-        	alert("Request Data Failed...");
+        	alert("Request Failed...");
         }
 	});
 	
@@ -82,7 +83,7 @@ function createList(data){
 	
 	var result = data.reduce(function(str,item){
 		str += "<li class=\"list\"><div class=\"title\">" + item.title 
-			+  "</div><div class=\"createDate\">Created@" + formatDate(item.created) 
+			+  "</div><div class=\"createDate\">Created@" + item.created 
 			+  "</div></li>";
 		return str;
 	},"");

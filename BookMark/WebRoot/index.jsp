@@ -45,10 +45,6 @@
 		  </table>
 		  </form>
 		</div>
-		
-		<div>
-			<input type="button" id="btn_query" value="查询" onclick="queryBookMarks();" />
-		</div>
 	</div>
   
  </body>
