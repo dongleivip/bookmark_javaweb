@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.homework.dao.BookMarkDao;
 import com.homework.domain.BookMark;
+import com.homework.domain.Page;
+import com.homework.domain.PageRequest;
 import com.homework.exception.MsgException;
 import com.homework.factory.BasicFactory;
 
@@ -35,13 +37,11 @@ public class BookMarkServiceImpl implements BookMarkService {
 		return dao.queryAllByList();
 	}
 
-	public List<BookMark> queryListByTitle(String title) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public List<BookMark> queryByKeyword(String keyword) {
 		return dao.querybyKeyword(keyword);
 	}
 
+	public Page<BookMark> queryByPage(BookMark bookmark, PageRequest pageRequest) {
+		return dao.querybyPage(bookmark, pageRequest);
+	}
 }

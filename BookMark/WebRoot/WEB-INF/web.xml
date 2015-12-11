@@ -17,6 +17,16 @@
     <servlet-name>SearchBookMarkServlet</servlet-name>
     <servlet-class>com.homework.web.SearchBookMarkServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>PageQueryBookMarkServlet</servlet-name>
+    <servlet-class>com.homework.web.PageQueryBookMarkServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>InitDataBaseServlet</servlet-name>
+    <servlet-class>com.homework.web.InitDataBaseServlet</servlet-class>
+  </servlet>
+
+
 
 
   <servlet-mapping>
@@ -30,6 +40,14 @@
   <servlet-mapping>
     <servlet-name>SearchBookMarkServlet</servlet-name>
     <url-pattern>/servlet/SearchBookMarkServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PageQueryBookMarkServlet</servlet-name>
+    <url-pattern>/servlet/PageQueryBookMarkServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>InitDataBaseServlet</servlet-name>
+    <url-pattern>/servlet/InitDataBaseServlet</url-pattern>
   </servlet-mapping>
 
 	<welcome-file-list>

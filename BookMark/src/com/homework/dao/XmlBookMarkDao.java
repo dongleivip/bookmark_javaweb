@@ -11,6 +11,8 @@ import org.dom4j.Element;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import com.homework.domain.BookMark;
+import com.homework.domain.Page;
+import com.homework.domain.PageRequest;
 import com.homework.util.XmlDaoUtils;
 
 @SuppressWarnings(value = { "unchecked", "deprecation" })
@@ -95,5 +97,14 @@ public class XmlBookMarkDao implements BookMarkDao {
 		throw new NotImplementedException();
 	}
 	
+	public int getTotalRows() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
+	public Page<BookMark> querybyPage(BookMark bookmark, PageRequest pageRequest) {
+		// TODO Auto-generated method stub
+		throw new NotImplementedException();
+	}
+	
 }

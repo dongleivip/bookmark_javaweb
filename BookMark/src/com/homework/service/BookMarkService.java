@@ -3,6 +3,8 @@ package com.homework.service;
 import java.util.List;
 
 import com.homework.domain.BookMark;
+import com.homework.domain.Page;
+import com.homework.domain.PageRequest;
 import com.homework.exception.MsgException;
 
 public interface BookMarkService {
@@ -44,12 +46,6 @@ public interface BookMarkService {
 	 * @return 返回所有书签的集合
 	 */
 	public List<BookMark> queryAllByList();
-	
-	/**
-	 * 根据书签名称查询
-	 * @return 返回名称与title相符的书签集合
-	 */
-	public List<BookMark> queryListByTitle(String title);
 
 	/**
 	 * 查询与关键字(title)相符的书签
@@ -57,4 +53,12 @@ public interface BookMarkService {
 	 * @return
 	 */
 	public List<BookMark> queryByKeyword(String keyword);
+
+	/**
+	 * 根据条件进行分页查询
+	 * @param bookmark 封装查询条件
+	 * @param pageRequest 分页请求
+	 * @return 返回带有分页后的数据集合
+	 */
+	public Page<BookMark> queryByPage(BookMark bookmark, PageRequest pageRequest);
 }
