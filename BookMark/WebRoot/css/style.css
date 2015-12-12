@@ -80,6 +80,9 @@ body {
 	display:inline-block;
 	width:80%;
 	cursor:pointer;
+	-moz-border-radius: 8px;      /* Gecko browsers */
+    -webkit-border-radius: 8px;   /* Webkit browsers */
+    border-radius:8px;            /* W3C syntax */
 }
 
 .createDate{
@@ -102,7 +105,8 @@ body {
 }
 
 #pager{
-	text-align:center;
+	width:70%;
+	/*text-align:center;*/
 }
 
 #pager ul{
@@ -112,11 +116,61 @@ body {
 }
 
 #pager  ul li{
-	display:inline;
+	/*display:inline;*/
+	float:left;
 	padding:0;
-	margin : 10px;
+	margin : 2px 5px;
 }
 
+
+/* ------------------------------ add box styles ------------------------------ */
+
+#add_div{
+	margin-left:10%;
+	width : 10%;
+	float:left;
+}
+
+#addBtn{
+	background-color:#FC9;
+	display:-moz-inline-box;
+	display:inline-block;
+	width:100px;
+	cursor:pointer;
+	border: 2px solid #dedede;
+    -moz-border-radius: 8px;      /* Gecko browsers */
+    -webkit-border-radius: 8px;   /* Webkit browsers */
+    border-radius:8px;            /* W3C syntax */
+}
+
+#addbox{
+	margin: 10px auto;
+	width:300px;
+	height:auto;
+	font-size : 12pt;
+}
+
+#addbox tr{
+	margin:10px 0;  
+}
+
+#addbox tr td{
+	margin: 0 20px; 
+	padding : 5px;
+	text-align:center;
+}
+
+#addbox input{
+	width:200px;
+	height:18px;
+}
+
+#addbox .errMsg{
+	margin : 0px auto;
+	text-align:center;
+	width:200px;
+	color:red;
+}
 
 
 

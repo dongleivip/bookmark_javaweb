@@ -1,6 +1,6 @@
 $(document).ready(function() { 
 	
-	$("#keyword").on("input propertychange", function(){
+	$("#keyword").on("input change", function(){
 		pageQueryBookMarks($(this).val());
 	});
 	
@@ -10,20 +10,7 @@ $(document).ready(function() {
 });
 
 
-function addBookMark(){
 
-	$.ajax({  
-        type:"POST",  
-        data:$("#form1").serialize(),
-        url:$("#form1").attr("action"),  
-        success: function(result){
-        	
-        },
-        error : function(){
-        	alert("Request Failed...");
-        }
-	});
-}
 
 function queryBookMarks(){
 	
@@ -53,7 +40,7 @@ function pageQueryBookMarks(key,pageNo){
 	var reg = new RegExp(key,'gi');
 	
 	$.ajax({  
-        type:"GET",  
+        type:"POST",  
         url: ctx + "/servlet/PageQueryBookMarkServlet",  
         data :  "keyword=" + key + "&pageNo=" + pageNo,
         dataType: "json", 
@@ -95,7 +82,7 @@ function filterKeyword(key){
 	var reg = new RegExp(key,'gi');
 	
 	$.ajax({  
-        type:"GET",  
+        type:"POST",  
         url: ctx + "/servlet/SearchBookMarkServlet",  
         data :  "keyword=" + key,
         dataType: "json", 
@@ -148,6 +135,9 @@ function openLink(url){
 	//var url = $span.attr("title").trim();
 	url = url.trim();
 	if(url != "" && url !="#"){
+		if(!(url.indexOf("http://") == 0 || url.indexOf("https://") == 0)){
+			url = "http://" + url;
+		}
 		window.open(url);
 	}
 }
@@ -223,8 +213,6 @@ function deleteItem(itemId){
 		return;
 	}
 	
-	alert(itemId);
-	
 	$.ajax({  
         type:"POST",
         url: ctx + "/servlet/DeleteBookMarkServlet",
@@ -245,4 +233,60 @@ function deleteItem(itemId){
 	});
 }
 
-    
+
+
+function showAddBox(){
+	var html = '<table id=\"addbox\">'; 
+	html += '<tr><td>书签名称:</td><td><input id="titleName" type="text" name="title" maxlength="50" /></td></tr>';
+	html += '<tr><td>书签地址</td><td><input id="address" type="text" name="url" maxlength="100"/></td></tr>';
+	html += '<tr><td colspan="2"><span id="errMsg" class="errMsg"></span></td></tr>';
+	html += '</table>';
+
+	var d = dialog({
+		id: 'addDialog',
+		title: "添加书签",
+		okValue: '确定',
+		cancelValue: '取消',
+		content: html,
+		ok: function () {
+			return addBookMark();
+		},
+	    cancel: function () {}
+	}).width(300).height(100);;
+	d.showModal();
+}
+
+function addBookMark(){
+
+	var $errMsg = $("#errMsg");
+	$errMsg.empty();
+	
+	var title = $("#titleName").val();
+	var url = $("#address").val();
+	if(title.trim() == '' || url.trim() == ''){
+		$errMsg.text("请输入正确的书签名称/书签链接");
+		return false;
+	}
+	
+	var  date = (new Date().getTime()).toString().substring(0,10);
+	
+	$.ajax({  
+        type:"POST",  
+        data:"title="+title + "&url=" + url + "&created=" + date,
+        dataType: "json",
+        url: ctx + "/servlet/addBookMark",  
+        success: function(result){
+        	if(result.flag == "ok"){
+        		$("#keyword").val(title);
+        		
+        		return true;
+        	} else {
+        		$errMsg.html(result.msg);
+        		return false;
+        	}
+        },
+        error : function(){
+        	alert("Request Failed...");
+        }
+	});
+}

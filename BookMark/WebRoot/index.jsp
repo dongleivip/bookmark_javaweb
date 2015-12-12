@@ -10,8 +10,11 @@
   <meta name="Keywords" content="bookmark">
   <meta name="Description" content="JS Bookmark Management">
   <title>BookMarks Manage</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" href="css/dialog/ui-dialog.css" type="text/css" />
   <script type="text/javascript" src="js/libs/jquery-1.9.0.js"></script>
+  <script type="text/javascript" src="js/dialog.js"></script>
+  <script type="text/javascript" src="js/libs/dialog-min.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
   <script type="text/javascript">var ctx = "${ctx}";</script>
 </head>
@@ -28,29 +31,16 @@
 		</div>
 		
 		<div id="add_div">
-		  <form id="form1" action="${ctx}/servlet/addBookMark">
-		  <table>
-		  	<tr>
-		  	  <td>书签名称</td>
-		  	  <td><input type="text" id="title" name="title"/></td>
-		  	</tr>
-		  	<tr>
-		  	  <td>书签地址</td>
-		  	  <td><input type="text" id="url" name="url"/></td>
-		  	</tr>
-		  	<tr>
-		  	  <td colspan="2"><span id="errorMsg"></span></td>
-		  	</tr>
-		  	<tr><td colspan="2"><input type="button" id="btn_add" value="添加" onclick="javascript:addBookMark();"></td></tr>
-		  </table>
-		  </form>
+		  <span id="addBtn" class="addBtn" onclick="javascript:showAddBox();">添加</span>
 		</div>
-		<div id="pager">
+		<div id="pager"></div>
 			
-		</div>
+		
+		
 		
 	</div>
-	
-  
+  	<section>
+  	  
+  	</section>
  </body>
 </html>
