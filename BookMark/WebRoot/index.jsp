@@ -29,18 +29,11 @@
 			<ul id="list">
 			</ul>
 		</div>
-		
 		<div id="add_div">
-		  <span id="addBtn" class="addBtn" onclick="javascript:showAddBox();">添加</span>
+		  <!-- <span id="addBtn" class="addBtn" onclick="javascript:showAddBox();">添加</span> -->
+		  <input id="addBtn" type="button" class="addBtn" onclick="javascript:showAddBox();" value="添加">
 		</div>
 		<div id="pager"></div>
-			
-		
-		
-		
 	</div>
-  	<section>
-  	  
-  	</section>
  </body>
 </html>

@@ -122,7 +122,7 @@ function createList(data){
 		}
 		str += "<li class=\"list\">";
 		str += "<div class=\"title\"><span class=\"titlename\" onclick=\"openLink(this.title);\" title=\"" + link + "\">" + item.title+ "</span></div>";
-		str += "<div class=\"delete\" ><span class=\"delbtn\" onclick=\"deleteItem('" + item.id + "')\">删除</span></div>";
+		str += "<div class=\"delete\" ><input type=\"button\" class=\"delbtn\" onclick=\"deleteItem('" + item.id + "')\" value=\"删除\"></div>";
 		str += "<div class=\"createDate\">Created@" + jsonDateFormat(item.created) +  "</div>";
 		str += "</li>";
 		return str;
@@ -296,24 +296,31 @@ function addBookMark(){
 	}
 	
 	var  date = (new Date().getTime()).toString().substring(0,10);
-	
-	$.ajax({  
-        type:"POST",  
+	var flag = false;
+	$.ajax({ 
+        type:"POST",
+        async: false,
         data:"title="+title + "&url=" + url + "&created=" + date,
         dataType: "json",
         url: ctx + "/servlet/addBookMark",  
         success: function(result){
+        	
+        	$("#keyword").val(title);
+    		pageQueryBookMarks(title,1);
+        	
         	if(result.flag == "ok"){
-        		$("#keyword").val(title);
-        		
-        		return true;
-        	} else {
-        		$errMsg.html(result.msg);
-        		return false;
+        		flag = true;
+        	} else if(result.flag == "fail"){
+        		$("#errMsg").text(result.msg);
+        		alert(result.msg);
+        		flag = false;
         	}
+        	
         },
         error : function(){
         	alert("Request Failed...");
         }
 	});
+	
+	return flag;
 }
