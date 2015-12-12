@@ -4,10 +4,11 @@ $(document).ready(function() {
 		pageQueryBookMarks($(this).val());
 	});
 	
-	//$("btn_add").on("click",addBookMark);
-	pageQueryBookMarks("",1);
+	pageQueryBookMarks($("#keyword").val(),1);
 	
+	//console.log($(".delbtn").length);
 });
+
 
 function addBookMark(){
 
@@ -22,7 +23,6 @@ function addBookMark(){
         	alert("Request Failed...");
         }
 	});
-	
 }
 
 function queryBookMarks(){
@@ -121,21 +121,35 @@ function filterKeyword(key){
         	alert("Request Failed...");
         }
 	});
+	
 }
 
 
 function createList(data){
 	
 	var result = data.reduce(function(str,item){
+		//var link = "http://www.baidu.com";
+		var link = "#";
+		if(item.url != ""){
+			link = item.url;
+		}
 		str += "<li class=\"list\">";
-		str += "<div class=\"title\">" + item.title+  "</div>";
-		//str += "<div class=\"delete\" id=\"" + item.id + "\"></div>"
+		str += "<div class=\"title\"><span class=\"titlename\" onclick=\"openLink(this.title);\" title=\"" + link + "\">" + item.title+ "</span></div>";
+		str += "<div class=\"delete\" ><span class=\"delbtn\" onclick=\"deleteItem('" + item.id + "')\">删除</span></div>";
 		str += "<div class=\"createDate\">Created@" + jsonDateFormat(item.created) +  "</div>";
 		str += "</li>";
-		
 		return str;
 	},"");
 	$("#list").html(result);
+}
+
+function openLink(url){
+	//var $span = jQuery(element);
+	//var url = $span.attr("title").trim();
+	url = url.trim();
+	if(url != "" && url !="#"){
+		window.open(url);
+	}
 }
 
 //json日期格式转换为正常格式
@@ -200,6 +214,35 @@ function pagination(page){
 function changePage(pageNo){
 	var keyword = $("#keyword").val();
 	pageQueryBookMarks(keyword,pageNo);
+}
+
+
+function deleteItem(itemId){
+	
+	if(!confirm("确定要删除吗？")){
+		return;
+	}
+	
+	alert(itemId);
+	
+	$.ajax({  
+        type:"POST",
+        url: ctx + "/servlet/DeleteBookMarkServlet",
+        data : "itemId=" + itemId,
+        dataType: "json",
+        success: function(json){
+        	if(json.flag == "ok"){
+        		//重新查询
+        		pageQueryBookMarks($("#keyword").val(),1);
+        	} else if(json.flag == "fail"){
+        		alert("Delete Item Failed...");
+        	}
+        	
+        },
+        error : function(){
+        	alert("Request Failed...");
+        }
+	});
 }
 
     

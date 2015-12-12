@@ -32,6 +32,11 @@
     </init-param>
     <load-on-startup>0</load-on-startup>
   </servlet>
+  <servlet>
+    <servlet-name>DeleteBookMarkServlet</servlet-name>
+    <servlet-class>com.homework.web.DeleteBookMarkServlet</servlet-class>
+  </servlet>
+
 
 
 
@@ -50,6 +55,10 @@
   <servlet-mapping>
     <servlet-name>PageQueryBookMarkServlet</servlet-name>
     <url-pattern>/servlet/PageQueryBookMarkServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteBookMarkServlet</servlet-name>
+    <url-pattern>/servlet/DeleteBookMarkServlet</url-pattern>
   </servlet-mapping>
 
   

@@ -50,19 +50,40 @@ body {
 
 #bookmarks{
 	margin:30px 15%;
-	
 }
 
 .title{
+	float:left;
 	text-align: left;
 	font-size: 20px;
-	width: 75%;
+	width: 85%;
 	white-space:nowrap;
 	overflow:hidden;
 	text-overflow:ellipsis;
 }
 
+.titlename{
+	cursor:pointer;
+}
+.titlename:hover {
+  color: #0061D7;
+}
+
+.delete{
+	float:left;
+	width:15%;
+}
+
+.delbtn{
+	background-color:#ffcc00;
+	display:-moz-inline-box;
+	display:inline-block;
+	width:80%;
+	cursor:pointer;
+}
+
 .createDate{
+	clear:both;
 	text-align: right;
 	font-size: 18px;
 	font-style: oblique;
