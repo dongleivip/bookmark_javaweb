@@ -108,6 +108,33 @@ public class MySqlBookMarkDaoImpl implements BookMarkDao {
 			throw new RuntimeException();
 		}
 	}
+	
+	public boolean isExits (BookMark bookmark) {
+		
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("select * from tb_bookmark where 1=1 ");
+		List<Object> params = new ArrayList<Object>();
+		if (!StringUtils.isEmpty(bookmark.getTitle())) {
+			buffer.append(" and title = ? ");
+			params.add(bookmark.getTitle());
+		}
+		if (!StringUtils.isEmpty(bookmark.getUrl())) {
+			buffer.append(" and url = ? ");
+			params.add(bookmark.getUrl());
+		}
+		if (!StringUtils.isEmpty(bookmark.getCreated())) {
+			buffer.append(" and created = ? ");
+			params.add(bookmark.getCreated());
+		}
+		
+		try {
+			QueryRunner runner = new QueryRunner(DaoUtils.getSource());
+			return  runner.query(buffer.toString(), new BeanHandler<BookMark>(BookMark.class), params.toArray()) != null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
 
 	public Page<BookMark> querybyPage(BookMark bookmark, PageRequest pageRequest) {
 		try {
@@ -149,8 +176,40 @@ public class MySqlBookMarkDaoImpl implements BookMarkDao {
 			throw new RuntimeException();
 		}
 	}
+	
+	public int saveByList(List<BookMark> list) {
+		int count = 0;
+		if(list != null){
+			for(BookMark model : list){
+				if(!isExits(model)){
+					count += add(model);
+				}
+			}
+		}
+		return count;
+	}
+	
+	public int add(BookMark bookmark){
+		String sql = "insert into tb_bookmark values(null,?,?,?)";
+		try {
+			QueryRunner runner = new QueryRunner(DaoUtils.getSource());
 
-	/* 辅助函数 */
+			// json里的数据是没有url的...
+			String url = "";
+			if(!StringUtils.isEmpty(bookmark.getUrl())){
+				url = bookmark.getUrl();
+			}
+			
+			Object[] params = {bookmark.getTitle(),url,bookmark.getCreated()};
+			return runner.update(sql, params);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+	}
+
+	/* 下面是辅助函数 */
 
 	private static String removeOrders(String sql) {
 		Pattern p = Pattern.compile("order\\s*by[\\w|\\W|\\s|\\S]*",Pattern.CASE_INSENSITIVE);
@@ -181,4 +240,5 @@ public class MySqlBookMarkDaoImpl implements BookMarkDao {
 		return countSql;
 	}
 
+	
 }

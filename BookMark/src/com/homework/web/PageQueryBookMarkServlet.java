@@ -1,7 +1,6 @@
 package com.homework.web;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,14 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
 
 import com.homework.domain.BookMark;
 import com.homework.domain.Page;
 import com.homework.domain.PageRequest;
 import com.homework.factory.BasicFactory;
 import com.homework.service.BookMarkService;
-import com.homework.util.json.JsonDateValueProcessor;
 
 public class PageQueryBookMarkServlet extends HttpServlet {
 
@@ -40,10 +37,12 @@ public class PageQueryBookMarkServlet extends HttpServlet {
 		
 		Page<BookMark> page = service.queryByPage(bookmark,pageRequest);
 		
-		JsonConfig jsonConfig = new JsonConfig();
-		jsonConfig.registerJsonValueProcessor(Date.class, new JsonDateValueProcessor());
+//		JsonConfig jsonConfig = new JsonConfig();
+//		jsonConfig.registerJsonValueProcessor(Date.class, new JsonDateValueProcessor());
 		
-		JSONObject json = JSONObject.fromObject(page,jsonConfig);
+//		JSONObject json = JSONObject.fromObject(page,jsonConfig);
+		
+		JSONObject json = JSONObject.fromObject(page);
 		response.getWriter().print(json.toString());
 	}
 

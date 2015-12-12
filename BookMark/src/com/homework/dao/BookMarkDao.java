@@ -67,5 +67,12 @@ public interface BookMarkDao {
 	 * @return 返回带有分页后的数据集合
 	 */
 	public Page<BookMark> querybyPage(BookMark bookmark, PageRequest pageRequest);
+
+	/**
+	 * 将书签集合存数数据库中,如果书签名称存在，则跳过
+	 * @param list 书签集合
+	 * @return 成功插入的数目
+	 */
+	public int saveByList(List<BookMark> list);
 	
 }

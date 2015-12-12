@@ -1,7 +1,5 @@
 package com.homework.test;
 
-import java.util.Date;
-
 import org.junit.Test;
 
 import com.homework.dao.BookMarkDao;
@@ -26,7 +24,7 @@ public class MySqlBookMarkDaoTest {
 		BookMark bookmark = new BookMark();
 		bookmark.setTitle("Google");
 		bookmark.setUrl("www.google.com");
-		bookmark.setCreated(new Date());
+		bookmark.setCreated("");
 		dao.addBookMark(bookmark);
 	}
 	

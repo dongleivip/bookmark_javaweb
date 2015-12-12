@@ -1,7 +1,6 @@
 package com.homework.dao;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.dom4j.Document;
@@ -70,7 +69,7 @@ public class XmlBookMarkDao implements BookMarkDao {
 			Element ele = list.get(0);
 			bookmark.setTitle(ele.attributeValue("title"));
 			bookmark.setUrl(ele.attributeValue("url"));
-			bookmark.setCreated(new Date(ele.attributeValue("created")));
+			bookmark.setCreated(ele.attributeValue("created"));
 			return bookmark;
 		} else {
 			return null;
@@ -106,5 +105,12 @@ public class XmlBookMarkDao implements BookMarkDao {
 		// TODO Auto-generated method stub
 		throw new NotImplementedException();
 	}
+
+	public int saveByList(List<BookMark> list) {
+		// TODO Auto-generated method stub
+		throw new NotImplementedException();
+	}
+	
+	
 	
 }
