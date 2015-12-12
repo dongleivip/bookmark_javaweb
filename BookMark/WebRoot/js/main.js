@@ -5,7 +5,7 @@ $(document).ready(function() {
 	});
 	
 	//$("btn_add").on("click",addBookMark);
-	
+	pageQueryBookMarks("",1);
 	
 });
 
@@ -46,9 +46,9 @@ function pageQueryBookMarks(key,pageNo){
 	
 	var NumReg = /^[1-9]+[0-9]*]*$/;
 	if (!NumReg.test(pageNo)){  
-        //不是正整数
+        //不是正整数 --- 重新搜索,页码置为1
 		pageNo = 1;
-    }  
+    }
 	
 	var reg = new RegExp(key,'gi');
 	
@@ -77,10 +77,11 @@ function pageQueryBookMarks(key,pageNo){
         		createList(result);
         	}
         	
-        	//if(page.totalRows > 10){
-        		//显示页码
+        	if(page.totalRows > 10){
         		pagination(page);
-        	//}
+        	} else {
+        		$("#pager").empty();
+        	}
         },
         error : function(){
         	alert("Request Failed...");
@@ -129,25 +130,26 @@ function createList(data){
 		str += "<li class=\"list\">";
 		str += "<div class=\"title\">" + item.title+  "</div>";
 		//str += "<div class=\"delete\" id=\"" + item.id + "\"></div>"
-		str += "<div class=\"createDate\">Created@" + item.created +  "</div>";
+		str += "<div class=\"createDate\">Created@" + jsonDateFormat(item.created) +  "</div>";
 		str += "</li>";
 		
 		return str;
 	},"");
-	//$("#list").empty();
 	$("#list").html(result);
 }
 
-	
-function formatDate(date) {
-	
-    var time = new Date(parseInt(date) * 1000);
-    var year = time.getFullYear();
-    var month = time.getMonth() + 1;
-    month = month > 10 ? month : '0' + month;
-    var day = time.getDay();
-    day = day > 10 ? day : '0' + day;
-    return year + '-' + month + '-' + day;
+//json日期格式转换为正常格式
+function jsonDateFormat(jsonDate) {
+    try {
+        var date = new Date(parseInt(jsonDate) * 1000);
+        var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+        var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        return date.getFullYear() + "-" + month + "-" + day + " " + hours + ":" + minutes;
+    } catch (ex) {
+        return "";
+    }
 }
 
 
@@ -180,7 +182,7 @@ function pagination(page){
 	
 	for(var i = begin ; i <= end ; i++){
 		if(i != page.pageNo){
-			content += "<li><a herf=\"javascript:void(0);\" onclick=\"changePage("+ i +")\">" + i + "</a></li>";
+			content += "<li><a href=\"javascript:void(0);\" onclick=\"changePage("+ i +")\">" + i + "</a></li>";
 		} else if(i == page.pageNo){
 			content += "<li><b>" + i + "</b><li>";
 		}
