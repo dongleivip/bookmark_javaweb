@@ -45,6 +45,9 @@ public class BookMark {
 		if (title == null || "".equals(title)) {
 			throw new MsgException("书签名称不能为空");
 		}
+		if (url == null || "".equals(url)) {
+			throw new MsgException("地址不能为空");
+		}
 	}
 
 	@Override
