@@ -206,12 +206,7 @@ function changePage(pageNo){
 	pageQueryBookMarks(keyword,pageNo);
 }
 
-
-function deleteItem(itemId){
-	
-	if(!confirm("确定要删除吗？")){
-		return;
-	}
+function doDelete(itemId){
 	
 	$.ajax({  
         type:"POST",
@@ -231,6 +226,38 @@ function deleteItem(itemId){
         	alert("Request Failed...");
         }
 	});
+	
+	
+}
+
+
+function deleteItem(itemId){
+	
+//	if(!confirm("确定要删除吗？")){
+//		return;
+//	}
+	confirm("确定要删除吗？",doDelete,null,itemId);
+	
+	/*
+	$.ajax({  
+        type:"POST",
+        url: ctx + "/servlet/DeleteBookMarkServlet",
+        data : "itemId=" + itemId,
+        dataType: "json",
+        success: function(json){
+        	if(json.flag == "ok"){
+        		//重新查询
+        		pageQueryBookMarks($("#keyword").val(),1);
+        	} else if(json.flag == "fail"){
+        		alert("Delete Item Failed...");
+        	}
+        	
+        },
+        error : function(){
+        	alert("Request Failed...");
+        }
+	});
+	*/
 }
 
 

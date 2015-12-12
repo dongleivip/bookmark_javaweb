@@ -22,15 +22,16 @@ function alert(message,onFocusName){
 	d.showModal();
 	//return true;
 }	
+*/
 
-function confirm(message,okFunctionName,cancelFunctionName,parameter,width){
+function confirm(message,okFunctionName,cancelFunctionName,parameter){
 	if(okFunctionName ==undefined){
 		okFunctionName = function(){return true;};
 	}
 	if(cancelFunctionName ==undefined){
 		cancelFunctionName = function(){return true;};
 	}
-	var txt=  message;
+	
 	var d = dialog({
 	    title: '提示',
 	    content: message,
@@ -44,11 +45,10 @@ function confirm(message,okFunctionName,cancelFunctionName,parameter,width){
 	    	okFunctionName(parameter);
 	    	return true;
 	    }
-	}).width(360).height(90);
+	}).width(300).height(60);
 	d.showModal();
-	//return true;
 }
 
-*/
+
 
 
