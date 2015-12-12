@@ -44,4 +44,8 @@ public class BookMarkServiceImpl implements BookMarkService {
 	public Page<BookMark> queryByPage(BookMark bookmark, PageRequest pageRequest) {
 		return dao.querybyPage(bookmark, pageRequest);
 	}
+
+	public int saveBookMarkByList(List<BookMark> list) {
+		return dao.saveByList(list);
+	}
 }
