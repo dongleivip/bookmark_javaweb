@@ -312,10 +312,8 @@ function addBookMark(){
         		flag = true;
         	} else if(result.flag == "fail"){
         		$("#errMsg").text(result.msg);
-        		alert(result.msg);
         		flag = false;
         	}
-        	
         },
         error : function(){
         	alert("Request Failed...");

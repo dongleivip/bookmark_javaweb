@@ -30,7 +30,9 @@
       <param-name>initJsonFile</param-name>
       <param-value>bookmarks.json</param-value>
     </init-param>
+    <!-- 
     <load-on-startup>0</load-on-startup>
+     -->
   </servlet>
   <servlet>
     <servlet-name>DeleteBookMarkServlet</servlet-name>

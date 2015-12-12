@@ -31,7 +31,13 @@ public class PageQueryBookMarkServlet extends HttpServlet {
 		bookmark.setTitle(keyword);
 		
 		PageRequest pageRequest = new PageRequest();
-		int pageNo = Integer.parseInt(request.getParameter("pageNo"));
+		int pageNo = 0;
+		try{
+			pageNo = Integer.parseInt(request.getParameter("pageNo"));
+		}catch (NumberFormatException ex){
+			pageNo = 1;
+		}
+		
 		//设置起始页码
 		pageRequest.setPageNo(pageNo);
 		
