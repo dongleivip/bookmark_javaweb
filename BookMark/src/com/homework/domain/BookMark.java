@@ -1,7 +1,5 @@
 package com.homework.domain;
 
-import java.util.Date;
-
 import com.homework.exception.MsgException;
 
 public class BookMark {
@@ -9,7 +7,7 @@ public class BookMark {
 	private Integer id;
 	private String title;
 	private String url;
-	private Date created;
+	private String created;
 
 	public Integer getId() {
 		return id;
@@ -34,12 +32,12 @@ public class BookMark {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
-	public Date getCreated() {
+	
+	public String getCreated() {
 		return created;
 	}
 
-	public void setCreated(Date created) {
+	public void setCreated(String created) {
 		this.created = created;
 	}
 
