@@ -1,0 +1,16 @@
+# A sample Gemfile
+# source "https://rubygems.org"
+source "https://ruby.taobao.org"
+
+# gem "rails"
+
+# gem 'rspec'
+
+gem 'capybara-webkit'
+
+gem 'cucumber'
+gem 'capybara'
+gem 'selenium-webdriver'
+gem 'require_all'
+gem 'site_prism'
+gem 'pry'
